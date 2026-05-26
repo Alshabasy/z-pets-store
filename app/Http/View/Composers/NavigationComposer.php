@@ -8,16 +8,16 @@ use Illuminate\View\View;
 
 class NavigationComposer
 {
-    public function compose(View $view): void
+    public function compose(\Illuminate\View\View $view): void
     {
-        $navCategories = Cache::remember('nav.categories', 3600, function () {
-            return Category::whereNull('parent_id')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get();
-        });
+        $navCategories = \App\Models\Category::whereNull('parent_id')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
 
-        $view->with('navCategories', $navCategories);
+        $newOrdersCount = \App\Models\Order::where('status', 'new')->count();
+
+        $view->with(compact('navCategories', 'newOrdersCount'));
     }
 }

@@ -12,16 +12,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $stats = Cache::remember('dashboard.stats', 900, function () {
-            return [
-                'total_products' => Product::where('is_active', true)->count(),
-                'total_categories' => Category::count(),
-                'new_orders' => Order::where('status', 'new')->count(),
-                'total_orders' => Order::count(),
-            ];
-        });
+        $stats = [
+            'total_products'   => \App\Models\Product::where('is_active', true)->count(),
+            'total_categories' => \App\Models\Category::count(),
+            'new_orders'       => \App\Models\Order::where('status', 'new')->count(),
+            'total_orders'     => \App\Models\Order::count(),
+        ];
 
-        $recentOrders = Order::latest()->take(10)->get();
+        $recentOrders = \App\Models\Order::latest()->take(10)->get();
 
         return view('dashboard.index', compact('stats', 'recentOrders'));
     }

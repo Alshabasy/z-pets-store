@@ -13,42 +13,37 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $banners = Cache::remember('home.banners', 3600, function () {
-            return Banner::where('is_active', true)->orderBy('sort_order')->get();
-        });
+        $banners = \App\Models\Banner::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
 
-        $mainCategories = Cache::remember('home.main_categories', 3600, function () {
-            return Category::whereNull('parent_id')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->withCount('products')
-                ->get();
-        });
+        $mainCategories = \App\Models\Category::whereNull('parent_id')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->withCount('products')
+            ->get();
 
-        $featuredProducts = Cache::remember('home.featured_products', 1800, function () {
-            return Product::with(['category', 'mainImage', 'tags'])
-                ->where('is_featured', true)
-                ->where('is_active', true)
-                ->latest()
-                ->take(8)
-                ->get();
-        });
-
-        $newArrivals = Product::with(['category', 'mainImage'])
+        $featuredProducts = \App\Models\Product::with([
+                'category', 'mainImage', 'tags'
+            ])
+            ->where('is_featured', true)
             ->where('is_active', true)
             ->latest()
             ->take(8)
             ->get();
 
-        $storeName = Setting::getValue('store_name', 'Z-Pets Store');
+        $newArrivals = \App\Models\Product::with(['category', 'mainImage'])
+            ->where('is_active', true)
+            ->latest()
+            ->take(8)
+            ->get();
+
+        $storeName    = \App\Models\Setting::getValue('store_name', config('app.name'));
+        $storeTagline = \App\Models\Setting::getValue('store_tagline', '');
 
         return view('pages.home', compact(
-            'banners',
-            'mainCategories',
-            'featuredProducts',
-            'newArrivals',
-            'storeName'
+            'banners', 'mainCategories', 'featuredProducts',
+            'newArrivals', 'storeName', 'storeTagline'
         ));
     }
 }
