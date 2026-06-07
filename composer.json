@@ -14,7 +14,6 @@
         "google-gemini-php/client": "*",
         "laravel/framework": "^13.7",
         "laravel/tinker": "^3.0",
-        "mahdisphp/laravel-hack-auditor": "*",
         "niduranga/laravel-dev-guard": "*",
         "openai-php/client": "*"
     },
