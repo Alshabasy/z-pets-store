@@ -4,7 +4,7 @@
         "builder": "RAILPACK"
     },
     "deploy": {
-        "startCommand": "php artisan config:clear && php artisan migrate --force && php artisan storage:link || true && php artisan optimize && php -S 0.0.0.0:$PORT -t public",
+        "startCommand": "rm -f bootstrap/cache/config.php && php artisan config:clear && php artisan migrate --force && php artisan storage:link || true && php artisan optimize && php -S 0.0.0.0:$PORT -t public",
         "healthcheckPath": "/up",
         "healthcheckTimeout": 30,
         "restartPolicyType": "ON_FAILURE",
