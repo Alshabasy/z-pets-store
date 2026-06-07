@@ -15,14 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectUsersTo('/dashboard');
 
         $middleware->web(append: [
-    \App\Http\Middleware\SecurityHeaders::class,
-
-    \Illuminate\Cookie\Middleware\EncryptCookies::class,
-    \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-    \Illuminate\Session\Middleware\StartSession::class,
-    \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-    \Illuminate\Cookie\Middleware\VerifyCsrfToken::class,
-]);
+            \App\Http\Middleware\SecurityHeaders::class,
+        ]);
 
         $middleware->alias([
             'isAdmin' => \App\Http\Middleware\IsAdmin::class,
