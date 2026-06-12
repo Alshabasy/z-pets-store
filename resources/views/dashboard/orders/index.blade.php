@@ -12,7 +12,7 @@
         </a>
         <a href="{{ route('dashboard.orders.index', ['status' => 'new']) }}" class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center {{ request('status') === 'new' ? 'bg-brand-green text-white shadow-md' : 'bg-gray-100 text-gray-500 hover:bg-gray-200' }}">
             <i class="fa-solid fa-star mr-2 {{ request('status') === 'new' ? 'text-amber-300' : 'text-amber-500' }}"></i>
-            New 
+            New
             @if($counts['new'] > 0)
                 <span class="ml-2 bg-amber-500 text-white text-[10px] px-2 py-0.5 rounded-full font-black">{{ $counts['new'] }}</span>
             @endif
@@ -103,8 +103,9 @@
                                 EGP {{ number_format($order->total, 2) }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <select id="status-{{ $order->id }}" class="order-status-select text-[10px] uppercase font-black rounded-full border-0 focus:ring-2 focus:ring-offset-1 focus:ring-brand-green py-1 px-4 cursor-pointer
-                                    data-id="{{ $order->id }}"
+                                <select id="status-{{ $order->id }}"
+        data-id="{{ $order->id }}"
+        class="order-status-select text-[10px] uppercase font-black rounded-full border-0 focus:ring-2 focus:ring-offset-1 focus:ring-brand-green py-1 px-4 cursor-pointer
                                     {{ $order->status === 'new' ? 'bg-amber-100 text-amber-800' : '' }}
                                     {{ $order->status === 'seen' ? 'bg-blue-100 text-blue-800' : '' }}
                                     {{ $order->status === 'confirmed' ? 'bg-green-100 text-green-800' : '' }}
@@ -163,7 +164,7 @@
                                             </h4>
                                             <p class="text-sm text-gray-600 italic leading-relaxed">{{ $order->notes ?: 'No instructions provided.' }}</p>
                                         </div>
-                                        
+
                                         <!-- Actions -->
                                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                                             <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center">
@@ -251,7 +252,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         @if($orders->hasPages())
             <div class="p-6 border-t border-gray-200">
                 {{ $orders->links() }}
