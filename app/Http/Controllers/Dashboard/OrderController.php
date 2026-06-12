@@ -44,7 +44,7 @@ class OrderController extends Controller
                 . '?text=' . rawurlencode($msg);
             return $order;
         });
-        
+
         $counts = [
             'all' => Order::count(),
             'new' => Order::where('status', 'new')->count(),
@@ -52,21 +52,21 @@ class OrderController extends Controller
             'confirmed' => Order::where('status', 'confirmed')->count(),
             'completed' => Order::where('status', 'completed')->count(),
         ];
-        
+
         return view('dashboard.orders.index', compact('orders', 'counts'));
     }
 
-    public function updateStatus(Request $request, $id)
+    public function updateStatus(Request $request, Order $order)
     {
         $request->validate([
             'status' => 'required|in:new,seen,confirmed,completed'
         ]);
-        
-        $order = Order::findOrFail($id);
+
+        // $order = Order::findOrFail($id);
         $order->update(['status' => $request->status]);
 
         Cache::forget('dashboard.stats');
-        
+
         return response()->json([
             'success' => true,
             'status' => $order->status
