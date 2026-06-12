@@ -56,13 +56,13 @@ class OrderController extends Controller
         return view('dashboard.orders.index', compact('orders', 'counts'));
     }
 
-    public function updateStatus(Request $request, Order $order)
+    public function updateStatus(Request $request, $id)
     {
         $request->validate([
             'status' => 'required|in:new,seen,confirmed,completed'
         ]);
 
-        // $order = Order::findOrFail($id);
+        $order = Order::findOrFail($id);
         $order->update(['status' => $request->status]);
 
         Cache::forget('dashboard.stats');

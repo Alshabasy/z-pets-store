@@ -57,7 +57,7 @@ Route::middleware(['auth', 'isAdmin'])->prefix('dashboard')->name('dashboard.')-
         ->name('orders.bulk-destroy');
     Route::get('/orders', [App\Http\Controllers\Dashboard\OrderController::class, 'index'])
         ->name('orders.index');
-    Route::put('/orders/{order}/status', [App\Http\Controllers\Dashboard\OrderController::class, 'updateStatus'])
+    Route::put('/orders/{id}/status', [App\Http\Controllers\Dashboard\OrderController::class, 'updateStatus'])
         ->name('orders.updateStatus');
     Route::delete('/orders/{id}', [App\Http\Controllers\Dashboard\OrderController::class, 'destroy'])
         ->name('orders.destroy');
