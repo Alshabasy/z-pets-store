@@ -1,8 +1,10 @@
 # Z-Pets Store
 
-<p align="center">
+
+### [live Demo] (https://z-pets-store-production.up.railway.app/)
+<!-- <p align="center">
   <img src="https://coresg-normal.trae.ai/api/ide/v1/text-to-image?prompt=A%20cute%2C%20modern%20pet%20store%20logo%20with%20a%20green%20color%20scheme%20and%20a%20paw%20print&image_size=square" alt="Z-Pets Store Logo" width="200" style="border-radius: 12px;"/>
-</p>
+</p> -->
 
 A full-featured, modern pet store built with **Laravel 13**, **Blade**, **Tailwind CSS v4**, and **MySQL**. Designed for Egypt's pet market, with WhatsApp checkout and a professional admin dashboard.
 
