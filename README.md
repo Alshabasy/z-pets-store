@@ -1103,8 +1103,8 @@ Need help? Here are several ways to get support:
 **Amr Alshabasy**
 
 - GitHub: [@Alshabasy](https://github.com/Alshabasy)
-- LinkedIn: [Connect](https://linkedin.com/in/alshabasy)
-- Email: [your-email@example.com]
+- LinkedIn: [Connect](https://linkedin.com/in/amr-alshabasy)
+- Email: [amralshabasy10@gmail.com]
 
 ---
 
